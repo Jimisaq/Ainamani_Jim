@@ -1,0 +1,2 @@
+This is the first line in my file
+This is the second line in my fileThis is the appended line.

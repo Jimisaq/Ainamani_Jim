@@ -83,8 +83,10 @@ def delete_staff_member():
             comfirm = input("Do you want to delete the staff? (y/n): ")
             if comfirm == "y":
                 staff.remove(member)
+                print("Staff Deleted Successfully")
             else:
                 print("Cancelled")
+
 
     if not found:
         print("Staff Not Found")
@@ -98,34 +100,78 @@ def delete_student():
             print(stdnt)
             confirm = input("Do you want to delete this student? (y/n): ")
             if confirm == "y":
-                staff.remove(stdnt)
+                students.remove(stdnt)
+                print("Student Deleted Successfully")
+                return
             else:
                 print("Cancelled")
 
     if not found:
-        print("Staff Not Found")
+        print("Student Not Found")
+
+# Staff actions
+def staff_actions():
+    while True:
+        try:
+            choice2 = int(input('''
+1-View Staff
+2-Register Staff
+3-Remove Staff
+5-Exit
+                        '''))
+            match choice2:
+                case 1:
+                    display(staff)
+                case 2:
+                    register_staff_member()
+                case 3:
+                    delete_staff_member()
+                case 4:
+                    return
+                case _:
+                    print("Invalid Choice")
+        except ValueError:
+            print("Invalid Choice")
+
+# Student actions
+def student_actions():
+    while True:
+        try:
+            choice3 = int(input('''
+1-View Students
+2-Register Student
+3-Remove Student
+4-Exit
+                        '''))
+            match choice3:
+                case 1:
+                    display(students)
+                case 2:
+                    register_student()
+                case 3:
+                    delete_student()
+                case 4:
+                    return
+                case _:
+                    print("Invalid Choice")
+        except ValueError:
+            print("Invalid Choice")
 
 
 while(True):
     try:
-        choice=int(input('''
-1-View Staff
-2-View Students
-3-Register Staff Member
-4-Register Student
-5-Exit
+        choice1=int(input('''
+1-Staff Actions
+2-Student Actions
+4-Exit
 Enter your choice:
         '''))
-        match choice:
+        match choice1:
             case 1:
-                display(staff)
+               staff_actions()
             case 2:
-                display(students)
+                student_actions()
             case 3:
-                register_staff_member()
-            case 4:
-                register_student()
-            case 5:
                 print("Exiting...Thank You!!")
                 break
     except ValueError:
